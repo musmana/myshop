@@ -7,6 +7,9 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.10
+      - key: DJANGO_SETTINGS_MODULE
+        value: myshop.settings
+    autoDeploy: true
 
 databases:
   - name: product-db
