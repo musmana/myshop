@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Default (Local) — use SQLite
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -85,13 +84,12 @@ DATABASES = {
     }
 }
 
-# Render (Production) — use PostgreSQL
-if os.environ.get('RENDER'):
-    DATABASES['default'] = dj_database_url.config(
+# If DATABASE_URL exists → use PostgreSQL
+if os.environ.get("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.config(
         conn_max_age=600,
         ssl_require=True
     )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
